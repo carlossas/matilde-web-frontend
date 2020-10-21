@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   LoginForm = new FormGroup({
@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
         const subs = this.authService.Login({ usuario: this.LoginForm.value }).subscribe(result => {
           if (result.error) {
             this.LoginError = true;
-            this.LoginMsg = result.msg;
+            if(result.msg){
+              this.LoginMsg = result.msg;
+            }else{
+              this.LoginMsg = "Verifique sus datos.";
+            }
             if (result.data.action === 'redirect') {
               setTimeout(() => {
                 this.router.navigateByUrl(result.data.url);

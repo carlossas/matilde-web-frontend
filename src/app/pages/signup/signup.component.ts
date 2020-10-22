@@ -33,6 +33,8 @@ export class SignupComponent implements OnInit {
       this.SignupMsg = '';
       utilities.AddSpinnerToButton().then(() => {
         this.authService.Signup({ datos: this.SignupForm.value }).subscribe(result => {
+          console.log(result);
+          
           if (result.error) {
             this.SignupError = true;
             this.SignupMsg = result.msg;

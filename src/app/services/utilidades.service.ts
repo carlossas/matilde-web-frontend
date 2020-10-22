@@ -27,7 +27,7 @@ export class UtilidadesService {
 
     //VERIFICAMOS EL TAMAÑO DE LA PANTALLA
     this.innerWidth = window.innerWidth;
-    // console.log(this.innerWidth);
+    console.log(this.innerWidth);
   }
 
   public clickEvent(id: string): void {

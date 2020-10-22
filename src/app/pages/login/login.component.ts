@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
       utilities.AddSpinnerToButton().then(() => {
         const subs = this.authService.Login({ usuario: this.LoginForm.value }).subscribe(result => {
           if (result.error) {
+            utilities.RemoveSpinnerFromButton();
             this.LoginError = true;
-            if(result.msg){
+            if(typeof result.msg == 'string'){
               this.LoginMsg = result.msg;
             }else{
               this.LoginMsg = "Verifique sus datos.";
@@ -54,7 +55,9 @@ export class LoginComponent implements OnInit {
             }
           }
           subs.unsubscribe();
-          utilities.RemoveSpinnerFromButton();
+          setTimeout(() => {
+            utilities.RemoveSpinnerFromButton();
+          }, 1000);
         });
       });
       console.log('Desarrollar lógica');
